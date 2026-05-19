@@ -1,6 +1,6 @@
 // App.jsx
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import StoryBook from "@pages/StoryBook/PhilosophyStoryBook";
 import HomePage from "@layout/mainLayout"; // Layout cha
 import Home from "@pages/Home";
@@ -28,6 +28,8 @@ const router = createBrowserRouter([
         element: <StoryBook />,
       },
       { path: endPoint.AI_APPENDIX, element: <AiAppendix /> },
+      { path: "on-tap", element: <Navigate to={endPoint.QUIZ} replace /> },
+      { path: "sach", element: <Navigate to={endPoint.STORYBOOK} replace /> },
     ],
   },
   {
