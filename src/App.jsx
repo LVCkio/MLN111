@@ -13,7 +13,8 @@ import AiAppendix from "@pages/AiAppendix";
 // import Faqs from "@pages/HomePage/Faqs";
 import endPoint from "@routes/routes";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
   {
     path: endPoint.HOMEPAGE,
     element: <HomePage />, // layout cha
@@ -36,7 +37,9 @@ const router = createBrowserRouter([
     path: endPoint.QUIZTEST,
     element: <QuizTestPage />,
   },
-]);
+  ],
+  { basename: "/MLN111" }
+);
 
 function App() {
   return <RouterProvider router={router} />;
