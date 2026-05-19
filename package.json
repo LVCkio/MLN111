@@ -1,0 +1,52 @@
+{
+  "name": "storytelling-philosophy",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@lottiefiles/dotlottie-react": "^0.17.1",
+    "@mui/material": "^7.3.2",
+    "@reduxjs/toolkit": "^2.9.0",
+    "@tailwindcss/vite": "^4.1.13",
+    "antd": "^6.1.4",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.15",
+    "fullpage.js": "^4.0.37",
+    "gsap": "^3.13.0",
+    "localforage": "^1.10.0",
+    "lottie-react": "^2.4.1",
+    "lucide-react": "^0.544.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-hot-toast": "^2.6.0",
+    "react-pageflip": "^2.0.3",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.9.2",
+    "react-toastify": "^11.0.5",
+    "redux-persist": "^6.0.0",
+    "sass": "^1.92.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
+    "vite": "^6.0.0"
+  }
+}

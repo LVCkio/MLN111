@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triết học Mác-Lênin - Hành trình tìm chân lý</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+        
+        .philosopher-portrait {
+            filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+            transition: all 0.3s ease;
+        }
+        
+        .philosopher-portrait:hover {
+            filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .phase-text {
+            font-family: 'Crimson Text', serif;
+            text-rendering: optimizeLegibility;
+        }
+        
+        .main-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        .floating-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            animation: float 8s infinite linear;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #fbbf24 20%, #f59e0b 50%, #d97706 80%, transparent 100%);
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        
+        .timeline-active .timeline-line {
+            opacity: 1;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+        
+        @keyframes spiralIn {
+            from { 
+                transform: rotate(720deg) scale(0) translate(200px, 200px); 
+                opacity: 0; 
+            }
+            to { 
+                transform: rotate(0deg) scale(1) translate(0px, 0px); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes materialize {
+            0% { 
+                transform: scale(0) rotateY(180deg); 
+                opacity: 0; 
+                filter: blur(20px);
+            }
+            50% {
+                transform: scale(1.2) rotateY(90deg);
+                opacity: 0.7;
+                filter: blur(5px);
+            }
+            100% { 
+                transform: scale(1) rotateY(0deg); 
+                opacity: 1; 
+                filter: blur(0px);
+            }
+        }
+        
+        @keyframes convergence {
+            0% { 
+                transform: translateX(var(--start-x, 0px)) translateY(var(--start-y, 0px)) scale(0.5); 
+                opacity: 0.3;
+            }
+            100% { 
+                transform: translateX(0px) translateY(0px) scale(1); 
+                opacity: 1; 
+            }
+        }
+        
+        @keyframes timelineFlow {
+            0% { 
+                transform: scaleX(0); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: scaleX(1); 
+                opacity: 1; 
+            }
+        }
+        
+        .spiral-in { animation: spiralIn 2s ease-out forwards; }
+        .materialize { animation: materialize 2.5s ease-out forwards; }
+        .convergence { animation: convergence 2s ease-out forwards; }
+        .timeline-flow { animation: timelineFlow 3s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-black overflow-hidden">
+    <div id="journey-container" class="fixed inset-0 flex flex-col items-center justify-center">
+        <!-- Floating particles background -->
+        <div id="particles-container" class="absolute inset-0 pointer-events-none"></div>
+        
+        <!-- Phase content will be dynamically inserted here -->
+        <div id="content-area" class="relative z-10 w-full h-full flex items-center justify-center"></div>
+        
+        <!-- Skip instruction -->
+        <div id="skip-text" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-300 text-sm tracking-wide opacity-0 transition-opacity duration-1000" style="font-family: 'Inter', sans-serif;">
+            Nhấn phím bất kỳ để tiếp tục
+        </div>
+    </div>
+
+    <script>
+        class MarxismJourney {
+            constructor() {
+                this.currentPhase = 0;
+                this.isExiting = false;
+                this.contentArea = document.getElementById('content-area');
+                this.particlesContainer = document.getElementById('particles-container');
+                this.skipText = document.getElementById('skip-text');
+                
+                this.philosophicalNarrations = [
+                    {
+                        question: "Làm thế nào để hiểu được bản chất của thế giới và con người?",
+                        subtitle: "Câu hỏi căn bản của triết học qua mọi thời đại"
+                    },
+                    {
+                        main: "Ba nguồn gốc lý luận của chủ nghĩa Marx",
+                        details: [
+                            "Triết học cổ điển Đức: Phương pháp biện chứng của Hegel, chủ nghĩa duy vật của Feuerbach",
+                            "Kinh tế chính trị Anh: Lý thuyết giá trị lao động của Adam Smith và David Ricardo", 
+                            "Chủ nghĩa xã hội không tưởng Pháp: Lý tưởng xã hội công bằng của Saint-Simon và Fourier"
+                        ]
+                    },
+                    {
+                        main: "Cuộc cách mạng trong tư duy triết học",
+                        achievement: "Marx và Engels đã tạo ra chủ nghĩa duy vật biện chứng và duy vật lịch sử",
+                        significance: "Lần đầu tiên trong lịch sử, triết học không chỉ giải thích thế giới mà còn chỉ ra con đường thay đổi thế giới"
+                    },
+                    {
+                        main: "Lenin và sự phát triển của chủ nghĩa Marx",
+                        contribution: "Lenin đã phát triển triết học Marx trong điều kiện mới của chủ nghĩa đế quốc",
+                        innovation: "Lý luận về cuộc cách mạng xã hội chủ nghĩa trong một nước, vai trò của đảng tiền phong"
+                    },
+                    {
+                        synthesis: "Triết học Mác-Lênin - Hệ thống lý luận khoa học về thế giới quan và phương pháp luận",
+                        essence: "Thống nhất giữa chủ nghĩa duy vật biện chứng và chủ nghĩa duy vật lịch sử"
+                    }
+                ];
+                
+                this.titleText = "TRIẾT HỌC MÁC – LÊNIN";
+                
+                this.philosophers = [
+                    // German Classical Philosophy Timeline
+                    { name: 'kant', x: 10, y: 20, epoch: 'german', delay: 0, period: '1724-1804' },
+                    { name: 'hegel', x: 25, y: 25, epoch: 'german', delay: 0.4, period: '1770-1831' },
+                    { name: 'feuerbach', x: 40, y: 30, epoch: 'german', delay: 0.8, period: '1804-1872' },
+                    
+                    // British Political Economy Timeline
+                    { name: 'adam_smith', x: 65, y: 20, epoch: 'british', delay: 1.2, period: '1723-1790' },
+                    { name: 'ricardo', x: 80, y: 25, epoch: 'british', delay: 1.6, period: '1772-1823' },
+                    
+                    // French Utopian Socialism Timeline
+                    { name: 'saint_simon', x: 20, y: 65, epoch: 'french', delay: 2.0, period: '1760-1825' },
+                    { name: 'fourier', x: 35, y: 70, epoch: 'french', delay: 2.4, period: '1772-1837' },
+                    
+                    // Marx-Engels synthesis
+                    { name: 'marx', x: 50, y: 40, epoch: 'synthesis', delay: 2.8, period: '1818-1883' },
+                    { name: 'engels', x: 60, y: 50, epoch: 'synthesis', delay: 3.2, period: '1820-1895' },
+                    
+                    // Lenin's development
+                    { name: 'lenin', x: 45, y: 60, epoch: 'lenin', delay: 3.6, period: '1870-1924' }
+                ];
+                
+                this.init();
+            }
+            
+            init() {
+                this.createParticles();
+                this.setupEventHandlers();
+                this.startJourney();
+            }
+            
+            createParticles() {
+                for(let i = 0; i < 60; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'floating-particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                    this.particlesContainer.appendChild(particle);
+                }
+            }
+            
+            setupEventHandlers() {
+                const handleSkip = (e) => {
+                    if (e.key === ' ' || e.key === 'Enter' || e.key === 'Escape' || e.type === 'click') {
+                        this.exitJourney();
+                    }
+                };
+                
+                document.addEventListener('keydown', handleSkip);
+                document.addEventListener('click', handleSkip);
+            }
+            
+            startJourney() {
+                setTimeout(() => this.showPhase1(), 1500);   
+                setTimeout(() => this.showPhase2(), 6000);   
+                setTimeout(() => this.showPhase3(), 15000);  
+                setTimeout(() => this.showPhase4(), 22000);  
+                setTimeout(() => this.showPhase5(), 28000);  
+                setTimeout(() => this.showPhase6(), 34000);  
+                setTimeout(() => this.showSkipText(), 38000); 
+            }
+            
+            clearContent() {
+                this.contentArea.innerHTML = '';
+            }
+            
+            showPhase1() {
+                this.currentPhase = 1;
+                this.clearContent();
+                
+                const phase = this.philosophicalNarrations[0];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'absolute inset-0 flex flex-col items-center justify-center';
+                questionDiv.innerHTML = `
+                    <div class="text-center space-y-6">
+                        <p class="phase-text text-4xl md:text-5xl lg:text-6xl text-white font-semibold tracking-wide px-8 leading-relaxed max-w-6xl opacity-0 transform translate-y-8"
+                           style="text-shadow: 0 0 40px rgba(255,255,255,0.8); transition: all 3s ease-out;">
+                            "${phase.question}"
+                        </p>
+                        <p class="phase-text text-lg md:text-xl text-blue-200 font-light tracking-wider px-6 opacity-0 transform translate-y-4"
+                           style="text-shadow: 0 0 20px rgba(147, 197, 253, 0.6); transition: all 3s ease-out 1s;">
+                            ${phase.subtitle}
+                        </p>
+                    </div>
+                `;
+                
+                this.contentArea.appendChild(questionDiv);
+                
+                setTimeout(() => {
+                    const mainText = questionDiv.querySelector('p:first-child');
+                    mainText.style.opacity = '1';
+                    mainText.style.transform = 'translateY(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    const subtitle = questionDiv.querySelector('p:last-child');
+                    subtitle.style.opacity = '1';
+                    subtitle.style.transform = 'translateY(0)';
+                }, 1500);
+            }
+            
+            showPhase2() {
+                this.currentPhase = 2;
+                this.clearContent();
+                
+                const phase = this.philosophicalNarrations[1];
+                const sourcesDiv = document.createElement('div');
+                sourcesDiv.className = 'absolute inset-0 timeline-active';
+                sourcesDiv.innerHTML = `
+                    <div class="timeline-line timeline-flow"></div>
+                    <div class="absolute top-12 left-1/2 transform -translate-x-1/2 text-center">
+                        <h2 class="phase-text text-2xl md:text-3xl text-yellow-200 font-bold tracking-wide mb-8 opacity-0 transform scale-90"
+                           style="text-shadow: 0 0 30px rgba(253, 224, 71, 0.8); transition: all 2s ease-out;">
+                            ${phase.main}
+                        </h2>
+                        <div class="space-y-4 max-w-5xl">
+                            ${phase.details.map((detail, i) => `
+                                <p class="phase-text text-base md:text-lg text-blue-100 font-medium px-6 leading-relaxed opacity-0 transform translate-x-8"
+                                   style="text-shadow: 0 0 15px rgba(147, 197, 253, 0.4); transition: all 2s ease-out ${0.5 + i * 0.5}s;">
+                                    • ${detail}
+                                </p>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                this.contentArea.appendChild(sourcesDiv);
+                
+                // Animate timeline and content
+                setTimeout(() => {
+                    const title = sourcesDiv.querySelector('h2');
+                    title.style.opacity = '1';
+                    title.style.transform = 'scale(1)';
+                    
+                    const details = sourcesDiv.querySelectorAll('p');
+                    details.forEach((detail, i) => {
+                        setTimeout(() => {
+                            detail.style.opacity = '1';
+                            detail.style.transform = 'translateX(0)';
+                        }, 1000 + i * 500);
+                    });
+                }, 500);
+                
+                // Add philosophers with timeline context
+                this.philosophers
+                    .filter(p => ['german', 'british', 'french'].includes(p.epoch))
+                    .forEach((philosopher, i) => {
+                        setTimeout(() => {
+                            this.createPhilosopherWithTimeline(philosopher, 'spiral-in');
+                        }, philosopher.delay * 1000 + 2000);
+                    });
+            }
+            
+            showPhase3() {
+                this.currentPhase = 3;
+                
+                const phase = this.philosophicalNarrations[2];
+                
+                // Dim previous content
+                const existingContent = this.contentArea.querySelectorAll('h2, p:not(.philosopher-label)');
+                existingContent.forEach(el => {
+                    el.style.opacity = '0.2';
+                    el.style.filter = 'blur(1px)';
+                });
+                
+                // Add synthesis narration
+                const synthesisDiv = document.createElement('div');
+                synthesisDiv.className = 'absolute top-16 left-1/2 transform -translate-x-1/2 text-center max-w-6xl';
+                synthesisDiv.innerHTML = `
+                    <h2 class="phase-text text-2xl md:text-3xl text-orange-200 font-bold mb-6 opacity-0 transform scale-95"
+                       style="text-shadow: 0 0 35px rgba(251, 146, 60, 0.8); transition: all 2.5s ease-out;">
+                        ${phase.main}
+                    </h2>
+                    <p class="phase-text text-lg md:text-xl text-orange-100 font-medium mb-4 px-6 leading-relaxed opacity-0 transform translate-y-4"
+                       style="text-shadow: 0 0 20px rgba(251, 146, 60, 0.6); transition: all 2s ease-out 1s;">
+                        ${phase.achievement}
+                    </p>
+                    <p class="phase-text text-base md:text-lg text-yellow-100 font-light px-6 leading-relaxed opacity-0 transform translate-y-4"
+                       style="text-shadow: 0 0 15px rgba(253, 224, 71, 0.5); transition: all 2s ease-out 2s;">
+                        ${phase.significance}
+                    </p>
+                `;
+                
+                this.contentArea.appendChild(synthesisDiv);
+                
+                setTimeout(() => {
+                    const elements = synthesisDiv.querySelectorAll('h2, p');
+                    elements.forEach((el, i) => {
+                        setTimeout(() => {
+                            el.style.opacity = '1';
+                            el.style.transform = el.tagName === 'H2' ? 'scale(1)' : 'translateY(0)';
+                        }, i * 1000);
+                    });
+                }, 300);
+                
+                // Highlight Marx-Engels
+                this.philosophers
+                    .filter(p => !['synthesis'].includes(p.epoch))
+                    .forEach(philosopher => {
+                        const element = document.getElementById(`philosopher-${philosopher.name}`);
+                        if (element) {
+                            element.style.opacity = '0.3';
+                            element.style.filter = 'blur(2px) grayscale(0.7)';
+                            element.style.transform += ' scale(0.8)';
+                        }
+                    });
+                
+                // Add Marx-Engels with special effects
+                this.philosophers
+                    .filter(p => p.epoch === 'synthesis')
+                    .forEach((philosopher, i) => {
+                        setTimeout(() => {
+                            this.createPhilosopherWithTimeline(philosopher, 'materialize');
+                        }, (philosopher.delay - 2.8) * 1000 + 1500);
+                    });
+            }
+            
+            showPhase4() {
+                this.currentPhase = 4;
+                
+                const phase = this.philosophicalNarrations[3];
+                
+                const leninDiv = document.createElement('div');
+                leninDiv.className = 'absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center max-w-6xl';
+                leninDiv.innerHTML = `
+                    <h2 class="phase-text text-2xl md:text-3xl text-red-200 font-bold mb-6 opacity-0 transform translate-x-20"
+                       style="text-shadow: 0 0 35px rgba(248, 113, 113, 0.8); transition: all 2.5s ease-out;">
+                        ${phase.main}
+                    </h2>
+                    <p class="phase-text text-lg md:text-xl text-red-100 font-medium mb-4 px-6 leading-relaxed opacity-0 transform translate-x-16"
+                       style="text-shadow: 0 0 20px rgba(248, 113, 113, 0.6); transition: all 2s ease-out 1s;">
+                        ${phase.contribution}
+                    </p>
+                    <p class="phase-text text-base md:text-lg text-pink-100 font-light px-6 leading-relaxed opacity-0 transform translate-x-12"
+                       style="text-shadow: 0 0 15px rgba(251, 207, 232, 0.5); transition: all 2s ease-out 2s;">
+                        ${phase.innovation}
+                    </p>
+                `;
+                
+                this.contentArea.appendChild(leninDiv);
+                
+                setTimeout(() => {
+                    const elements = leninDiv.querySelectorAll('h2, p');
+                    elements.forEach((el, i) => {
+                        setTimeout(() => {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateX(0)';
+                        }, i * 1000);
+                    });
+                }, 400);
+                
+                // Add Lenin
+                this.philosophers
+                    .filter(p => p.epoch === 'lenin')
+                    .forEach(philosopher => {
+                        setTimeout(() => {
+                            this.createPhilosopherWithTimeline(philosopher, 'convergence', {
+                                '--start-x': '300px',
+                                '--start-y': '-150px'
+                            });
+                        }, 1500);
+                    });
+            }
+            
+            showPhase5() {
+                this.currentPhase = 5;
+                
+                const phase = this.philosophicalNarrations[4];
+                
+                // Beautiful dissolution of all previous elements
+                const allElements = this.contentArea.querySelectorAll('.philosopher-portrait, h2, p:not(.final-philosophy)');
+                allElements.forEach((el, i) => {
+                    setTimeout(() => {
+                        el.style.transition = 'all 3s ease-out';
+                        el.style.opacity = '0';
+                        el.style.transform += ' translateY(-60px) scale(1.3)';
+                        el.style.filter = 'blur(20px)';
+                    }, i * 100);
+                });
+                
+                setTimeout(() => {
+                    const finalDiv = document.createElement('div');
+                    finalDiv.className = 'absolute inset-0 flex flex-col items-center justify-center text-center';
+                    finalDiv.innerHTML = `
+                        <div class="space-y-8 max-w-6xl px-8">
+                            <h2 class="final-philosophy phase-text text-3xl md:text-4xl font-bold opacity-0 transform scale-90"
+                               style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 50px rgba(251, 191, 36, 0.9); transition: all 3s ease-out;">
+                                ${phase.synthesis}
+                            </h2>
+                            <p class="final-philosophy phase-text text-xl md:text-2xl text-yellow-100 font-medium leading-relaxed opacity-0 transform scale-95"
+                               style="text-shadow: 0 0 30px rgba(253, 224, 71, 0.7); transition: all 2.5s ease-out 1.5s;">
+                                ${phase.essence}
+                            </p>
+                        </div>
+                    `;
+                    
+                    this.contentArea.appendChild(finalDiv);
+                    
+                    setTimeout(() => {
+                        const elements = finalDiv.querySelectorAll('.final-philosophy');
+                        elements.forEach((el, i) => {
+                            setTimeout(() => {
+                                el.style.opacity = '1';
+                                el.style.transform = 'scale(1)';
+                            }, i * 1500);
+                        });
+                    }, 200);
+                }, 2000);
+            }
+            
+            showPhase6() {
+                this.currentPhase = 6;
+                
+                setTimeout(() => {
+                    this.clearContent();
+                    
+                    const titleDiv = document.createElement('div');
+                    titleDiv.className = 'relative z-50 text-center';
+                    
+                    const titleHTML = this.titleText.split('').map((char, i) => 
+                        `<span class="inline-block opacity-0 transform translate-y-12 blur-lg" style="animation-delay: ${i * 100}ms;">${char === ' ' ? '&nbsp;' : char}</span>`
+                    ).join('');
+                    
+                    titleDiv.innerHTML = `
+                        <h1 class="main-title text-5xl md:text-7xl lg:text-9xl font-bold tracking-wider mb-12 text-white" 
+                            style="text-shadow: 0 0 60px rgba(255,255,255,0.6), 0 8px 30px rgba(0,0,0,0.8);">
+                            ${titleHTML}
+                        </h1>
+                        <div class="space-y-4">
+                            <p class="phase-text text-xl md:text-2xl text-gray-200 font-light tracking-wider opacity-0 transform translate-y-6"
+                               style="text-shadow: 0 4px 20px rgba(0,0,0,0.8); transition: all 2.5s ease-out 3s;">
+                                Hệ thống triết học khoa học về thế giới quan và phương pháp luận
+                            </p>
+                            <p class="phase-text text-lg md:text-xl text-blue-200 font-light tracking-wide opacity-0 transform translate-y-4"
+                               style="text-shadow: 0 4px 15px rgba(0,0,0,0.8); transition: all 2s ease-out 4s;">
+                                Bắt đầu hành trình khám phá chân lý và thay đổi thế giới
+                            </p>
+                        </div>
+                    `;
+                    
+                    this.contentArea.appendChild(titleDiv);
+                    
+                    // Animate letters
+                    const letters = titleDiv.querySelectorAll('span');
+                    letters.forEach((letter, i) => {
+                        setTimeout(() => {
+                            letter.style.transition = 'all 1s ease-out';
+                            letter.style.opacity = '1';
+                            letter.style.transform = 'translateY(0)';
+                            letter.style.filter = 'blur(0px)';
+                        }, i * 100);
+                    });
+                    
+                    // Animate subtitles
+                    setTimeout(() => {
+                        const subtitles = titleDiv.querySelectorAll('p');
+                        subtitles.forEach(subtitle => {
+                            subtitle.style.opacity = '1';
+                            subtitle.style.transform = 'translateY(0)';
+                        });
+                    }, letters.length * 100 + 2000);
+                    
+                }, 1500);
+            }
+            
+            showSkipText() {
+                this.skipText.style.opacity = '1';
+                
+                setInterval(() => {
+                    this.skipText.style.opacity = this.skipText.style.opacity === '1' ? '0.4' : '1';
+                }, 2000);
+            }
+            
+            createPhilosopherWithTimeline(philosopher, animationClass, customProps = {}) {
+                const philosopherDiv = document.createElement('div');
+                philosopherDiv.id = `philosopher-${philosopher.name}`;
+                philosopherDiv.className = `philosopher-portrait absolute ${animationClass} group`;
+                philosopherDiv.style.left = philosopher.x + '%';
+                philosopherDiv.style.top = philosopher.y + '%';
+                philosopherDiv.style.width = '100px';
+                philosopherDiv.style.height = '120px';
+                
+                Object.entries(customProps).forEach(([prop, value]) => {
+                    philosopherDiv.style.setProperty(prop, value);
+                });
+                
+                philosopherDiv.innerHTML = `
+                    ${this.getPhilosopherHTML(philosopher)}
+                    <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-32 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="philosopher-label text-xs text-white font-medium bg-black bg-opacity-70 px-2 py-1 rounded backdrop-blur-sm"
+                           style="text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
+                            ${this.getPhilosopherName(philosopher.name)}
+                        </p>
+                        <p class="text-xs text-gray-300 mt-1">
+                            ${philosopher.period}
+                        </p>
+                    </div>
+                `;
+                
+                this.contentArea.appendChild(philosopherDiv);
+            }
+            
+            getPhilosopherName(name) {
+                const names = {
+                    'kant': 'Immanuel Kant',
+                    'hegel': 'Georg W.F. Hegel',
+                    'feuerbach': 'Ludwig Feuerbach',
+                    'adam_smith': 'Adam Smith',
+                    'ricardo': 'David Ricardo',
+                    'saint_simon': 'Saint-Simon',
+                    'fourier': 'Charles Fourier',
+                    'marx': 'Karl Marx',
+                    'engels': 'Friedrich Engels',
+                    'lenin': 'Vladimir Lenin'
+                };
+                return names[name] || name;
+            }
+            
+            getPhilosopherHTML(philosopher) {
+                const styles = {
+                    german: { 
+                        bg: 'bg-gradient-to-b from-blue-600 to-blue-800', 
+                        border: 'border-blue-400',
+                        shadow: 'shadow-blue-500/40'
+                    },
+                    british: { 
+                        bg: 'bg-gradient-to-b from-green-600 to-green-800', 
+                        border: 'border-green-400', 
+                        shadow: 'shadow-green-500/40'
+                    },
+                    french: { 
+                        bg: 'bg-gradient-to-b from-red-600 to-red-800', 
+                        border: 'border-red-400',
+                        shadow: 'shadow-red-500/40'
+                    },
+                    synthesis: { 
+                        bg: 'bg-gradient-to-b from-orange-500 to-orange-700', 
+                        border: 'border-yellow-400',
+                        shadow: 'shadow-orange-500/50'
+                    },
+                    lenin: { 
+                        bg: 'bg-gradient-to-b from-red-700 to-red-900', 
+                        border: 'border-red-400',
+                        shadow: 'shadow-red-500/60'
+                    }
+                };
+                
+                const style = styles[philosopher.epoch] || styles.german;
+                
+                switch (philosopher.name) {
+                    case 'hegel':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-lg rounded-full">
+                                <div class="${style.bg} w-20 h-20 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <!-- Face -->
+                                    <div class="w-16 h-12 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <!-- Eyes -->
+                                        <div class="absolute top-4 left-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-4 right-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <!-- Nose -->
+                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-pink-300 rounded"></div>
+                                        <!-- Mouth -->
+                                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-pink-400 rounded"></div>
+                                    </div>
+                                    <!-- Hegel's distinctive high forehead and receding hairline -->
+                                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-18 h-10 bg-gray-600 rounded-t-full"></div>
+                                    <div class="absolute top-1 left-1/2 transform -translate-x-1/2 w-16 h-6 bg-pink-100 rounded-t-full"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    case 'feuerbach':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-lg rounded-full">
+                                <div class="${style.bg} w-20 h-20 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-16 h-12 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <div class="absolute top-4 left-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-4 right-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-pink-300 rounded"></div>
+                                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-pink-400 rounded"></div>
+                                    </div>
+                                    <!-- Brown wavy hair -->
+                                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-17 h-8 bg-amber-800 rounded-t-full"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    case 'kant':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-lg rounded-full">
+                                <div class="${style.bg} w-20 h-20 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-16 h-12 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <div class="absolute top-4 left-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-4 right-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-pink-300 rounded"></div>
+                                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-pink-400 rounded"></div>
+                                    </div>
+                                    <!-- 18th century powdered wig -->
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-19 h-10 bg-gray-100 rounded-full"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    case 'adam_smith':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-lg rounded-full">
+                                <div class="${style.bg} w-20 h-20 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-16 h-12 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <div class="absolute top-4 left-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-4 right-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-pink-300 rounded"></div>
+                                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-pink-400 rounded"></div>
+                                    </div>
+                                    <!-- 18th century wig with side curls -->
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-20 h-10 bg-gray-200 rounded-full"></div>
+                                    <div class="absolute top-2 left-0 w-4 h-8 bg-gray-200 rounded-full"></div>
+                                    <div class="absolute top-2 right-0 w-4 h-8 bg-gray-200 rounded-full"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    case 'ricardo':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-lg rounded-full">
+                                <div class="${style.bg} w-20 h-20 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-16 h-12 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <div class="absolute top-4 left-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-4 right-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-pink-300 rounded"></div>
+                                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-pink-400 rounded"></div>
+                                    </div>
+                                    <!-- Dark hair, classical style -->
+                                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gray-800 rounded-t-full"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    case 'saint_simon':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-lg rounded-full">
+                                <div class="${style.bg} w-20 h-20 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-16 h-12 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <div class="absolute top-4 left-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-4 right-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-pink-300 rounded"></div>
+                                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-pink-400 rounded"></div>
+                                    </div>
+                                    <!-- French aristocratic hairstyle -->
+                                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-18 h-9 bg-amber-700 rounded-t-full"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    case 'fourier':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-lg rounded-full">
+                                <div class="${style.bg} w-20 h-20 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-16 h-12 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <div class="absolute top-4 left-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-4 right-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-pink-300 rounded"></div>
+                                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-pink-400 rounded"></div>
+                                    </div>
+                                    <!-- Curly romantic period hair -->
+                                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-17 h-9 bg-amber-800 rounded-t-full"></div>
+                                    <div class="absolute top-1 left-1 w-3 h-4 bg-amber-800 rounded-full"></div>
+                                    <div class="absolute top-1 right-1 w-3 h-4 bg-amber-800 rounded-full"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    case 'marx':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-2xl rounded-full">
+                                <div class="${style.bg} w-22 h-22 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-18 h-14 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <!-- Marx's piercing eyes -->
+                                        <div class="absolute top-5 left-5 w-2 h-2 bg-gray-900 rounded-full"></div>
+                                        <div class="absolute top-5 right-5 w-2 h-2 bg-gray-900 rounded-full"></div>
+                                        <!-- Strong nose -->
+                                        <div class="absolute top-7 left-1/2 transform -translate-x-1/2 w-1.5 h-3 bg-pink-300 rounded"></div>
+                                    </div>
+                                    <!-- Marx's famous wild hair and beard -->
+                                    <div class="absolute top-10 left-1/2 transform -translate-x-1/2 w-16 h-10 bg-gray-700 rounded-b-full"></div>
+                                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-10 bg-gray-700 rounded-t-full"></div>
+                                    <!-- Revolutionary glow -->
+                                    <div class="absolute inset-0 bg-orange-400/30 rounded-full blur-lg animate-pulse"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    case 'engels':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-2xl rounded-full">
+                                <div class="${style.bg} w-21 h-21 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-17 h-13 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <div class="absolute top-5 left-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-5 right-5 w-2 h-2 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-7 left-1/2 transform -translate-x-1/2 w-1.5 h-3 bg-pink-300 rounded"></div>
+                                        <div class="absolute top-9 left-1/2 transform -translate-x-1/2 w-4 h-1.5 bg-pink-400 rounded"></div>
+                                    </div>
+                                    <!-- Engels' distinguished mustache and beard -->
+                                    <div class="absolute top-11 left-1/2 transform -translate-x-1/2 w-14 h-8 bg-amber-800 rounded-b-full"></div>
+                                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-19 h-9 bg-amber-800 rounded-t-full"></div>
+                                    <!-- Revolutionary glow -->
+                                    <div class="absolute inset-0 bg-orange-400/30 rounded-full blur-lg animate-pulse"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    case 'lenin':
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-2xl rounded-full">
+                                <div class="${style.bg} w-22 h-22 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-18 h-14 bg-pink-200 rounded-full mx-auto mt-4 relative">
+                                        <!-- Lenin's intense, revolutionary eyes -->
+                                        <div class="absolute top-5 left-5 w-2 h-2 bg-gray-900 rounded-full"></div>
+                                        <div class="absolute top-5 right-5 w-2 h-2 bg-gray-900 rounded-full"></div>
+                                        <!-- Nose -->
+                                        <div class="absolute top-7 left-1/2 transform -translate-x-1/2 w-1.5 h-3 bg-pink-300 rounded"></div>
+                                        <!-- Small mouth -->
+                                        <div class="absolute top-9 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-pink-400 rounded"></div>
+                                    </div>
+                                    <!-- Lenin's iconic goatee -->
+                                    <div class="absolute top-12 left-1/2 transform -translate-x-1/2 w-8 h-6 bg-amber-900 rounded-b-full"></div>
+                                    <!-- Mostly bald with some side hair -->
+                                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-8 bg-pink-100 rounded-t-full"></div>
+                                    <div class="absolute top-4 left-1 w-4 h-5 bg-amber-900 rounded"></div>
+                                    <div class="absolute top-4 right-1 w-4 h-5 bg-amber-900 rounded"></div>
+                                    <!-- Strong revolutionary glow -->
+                                    <div class="absolute inset-0 bg-red-500/40 rounded-full blur-xl animate-pulse"></div>
+                                </div>
+                            </div>
+                        `;
+                        
+                    default:
+                        return `
+                            <div class="w-full h-20 relative ${style.shadow} shadow-lg rounded-full">
+                                <div class="${style.bg} w-20 h-20 rounded-full mx-auto border-3 ${style.border} relative overflow-hidden">
+                                    <div class="w-16 h-12 bg-pink-200 rounded-full mx-auto mt-3 relative">
+                                        <div class="absolute top-4 left-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-4 right-4 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
+                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-pink-300 rounded"></div>
+                                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-pink-400 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                }
+            }
+            
+            exitJourney() {
+                if (this.isExiting) return;
+                this.isExiting = true;
+                
+                // Beautiful exit animation with professional closing
+                const container = document.getElementById('journey-container');
+                
+                // Add final message before exit
+                const finalMessage = document.createElement('div');
+                finalMessage.className = 'absolute inset-0 flex items-center justify-center z-50';
+                finalMessage.innerHTML = `
+                    <div class="text-center space-y-6 opacity-0 transform scale-90" style="transition: all 2s ease-out;">
+                        <p class="phase-text text-2xl md:text-3xl text-white font-semibold tracking-wide"
+                           style="text-shadow: 0 0 40px rgba(255,255,255,0.8);">
+                            Hành trình tri thức không bao giờ kết thúc
+                        </p>
+                        <p class="phase-text text-lg md:text-xl text-gray-200 font-light tracking-wider"
+                           style="text-shadow: 0 0 20px rgba(255,255,255,0.6);">
+                            Tiếp tục khám phá để thay đổi thế giới
+                        </p>
+                    </div>
+                `;
+                
+                container.appendChild(finalMessage);
+                
+                setTimeout(() => {
+                    const message = finalMessage.querySelector('div');
+                    message.style.opacity = '1';
+                    message.style.transform = 'scale(1)';
+                }, 100);
+                
+                setTimeout(() => {
+                    container.style.transition = 'all 3s ease-in-out';
+                    container.style.opacity = '0';
+                    container.style.transform = 'scale(1.1)';
+                    container.style.filter = 'blur(15px)';
+                }, 3000);
+                
+                setTimeout(() => {
+                    console.log('Marxism-Leninism Philosophy Journey completed!');
+                    // In a real application, this would navigate to the main content
+                    location.reload();
+                }, 6000);
+            }
+        }
+        
+        // Initialize the journey when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new MarxismJourney();
+        });
+    </script>
+</body>
+</html>

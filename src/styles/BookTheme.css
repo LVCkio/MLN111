@@ -1,0 +1,404 @@
+/* ===================== TYPOGRAPHY & CONTENT STYLING ===================== */
+/* BookTheme.css */
+
+:root{
+  --bg-scene-1:#050507;
+  --bg-scene-2:#0a0b0f;
+  --page-1:#0f1015;
+  --page-2:#151520;
+
+  --text-hi:#111827;      /* dark text on light page */
+  --text-md:#334155;
+
+  --amber-300:#fcd34d;
+  --amber-400:#fbbf24;
+  --amber-500:#f59e0b;
+  --amber-600:#d97706;
+  --amber-700:#b45309;
+
+  --violet-300:#a78bfa;
+  --violet-500:#7c3aed;
+
+  --border-amber: rgba(245,158,11,.22);
+}
+
+/* --- Vietnamese-friendly fonts --- */
+/* (khuyến nghị import ở global: Be Vietnam Pro + Merriweather) */
+:root{
+  /* Đồng bộ với PhilosophyStoryBook.css */
+  --font-sans:  "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Crimson Pro", "Georgia", "Times New Roman", serif;
+  --text-unified: #333333;   /* màu chữ đồng nhất duy nhất */
+}
+.book-scene{
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: 0;
+}
+
+/* --- Page content base --- */
+.page-content{
+  border: 1px solid rgba(2,6,23,.06);
+  box-shadow: 0 6px 20px rgba(2,6,23,.06);
+  color: var(--text-hi);
+}
+
+/* Headers */
+.page-header{
+  text-align:center; margin-bottom:28px; padding-bottom:18px;
+  border-bottom:2px solid var(--border-amber); position:relative;
+}
+.page-header::after{
+  content:""; position:absolute; left:50%; bottom:-2px; transform:translateX(-50%);
+  width:52px; height:2px;
+  background:linear-gradient(to right, var(--amber-700), var(--amber-500), var(--amber-700));
+}
+.page-header h2{
+  font-family: var(--font-sans);
+  font-weight:800;
+  font-size: clamp(11px, 1.9vw, 14px);
+  color: var(--text-unified);
+  margin:0 0 8px;
+  text-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.chapter-ornament{ font-size:18px; color:var(--text-unified); margin-top:6px; }
+
+/* Titles inside page — Montserrat, #333333 đồng nhất */
+.page-body h3{
+  font-family: var(--font-sans);
+  color: var(--text-unified);
+  font-weight:700;
+  font-size: clamp(13px, 2vw, 16px);
+  margin: 4px 0 12px;
+  text-shadow: none;
+}
+.page-body h4{
+  font-family: var(--font-sans);
+  color: var(--text-unified);
+  font-weight:600;
+  font-size: clamp(12px, 1.8vw, 14px);
+  margin: 12px 0 10px;
+  text-shadow: none;
+}
+
+/* Paragraphs */
+.page-body p{
+  font-family: var(--font-serif);
+  color: var(--text-unified);
+  line-height: 1.75;
+  margin-bottom: 14px;
+  text-align: justify;
+  font-size: clamp(13.5px, 1.95vw, 15.5px);
+  text-indent: 1.25em;
+}
+.first-letter::first-letter{
+  float:left; font-size: clamp(38px, 5.5vw, 54px);
+  line-height:.9; margin: 5px 10px 0 0; color: var(--text-unified); font-weight:700;
+  text-shadow: none;
+}
+
+/* Quotes / notes */
+.philosophy-quote, .stoic-quote, .rumi-quote{
+  background: rgba(160,128,64,.05);
+  padding: 16px 18px; margin: 16px 0;
+  border-left:3px solid #a08040;
+  border-radius: 0 8px 8px 0;
+  color: var(--text-unified); font-style: italic;
+  box-shadow: none;
+}
+.quote-symbol{
+  position:absolute; top:-4px; left:12px;
+  font-size:44px; color:#a08040; opacity:.25; font-family:serif;
+}
+.quote-author{
+  text-align:right; font-size: clamp(10px,1.6vw,12px);
+  font-family: var(--font-sans);
+  color: var(--text-unified); font-weight:600; margin-top:8px;
+}
+
+/* Reflection / Wisdom boxes */
+.reflection-box, .meditation-box, .connection-wisdom, .wisdom-insight{
+  background: linear-gradient(135deg, rgba(124,58,237,.05), rgba(245,158,11,.07));
+  border: 1px solid var(--border-amber);
+  border-radius: 10px;
+  color:#0f172a;
+  box-shadow: 0 4px 14px rgba(0,0,0,.06);
+  padding: 16px 18px; margin: 16px 0;
+}
+
+.reflection-box .rel{
+   color:#0f172a !important;
+}
+.reflection-title, .connection-title, .meditation-title{
+  font-family: var(--font-sans);
+  font-weight:700; color: var(--text-unified); margin-bottom:8px;
+  font-size: clamp(10px, 1.5vw, 12px); text-transform: uppercase; letter-spacing:.06em;
+}
+
+.reflection-title .p{
+  color: #050507 !important;
+}
+
+/* Lists of wisdom */
+.wisdom-section{ margin: 18px 0; }
+.wisdom-item{
+  display:flex; align-items:flex-start; gap:12px;
+  padding:10px 12px; border-radius:8px; transition: .18s;
+  background: linear-gradient(135deg, rgba(124,58,237,.03), rgba(245,158,11,.05));
+  border: 1px solid rgba(2,6,23,.04);
+  margin-bottom:10px;
+}
+.wisdom-item:hover{ transform: translateX(4px); background: rgba(124,58,237,.06); }
+.wisdom-number{
+  width:22px; height:22px; display:grid; place-items:center; flex-shrink:0;
+  border-radius:50%; font-weight:700; font-size:11px;
+  font-family: var(--font-sans);
+  background:#e8e0d4; color: var(--text-unified); box-shadow:none;
+}
+
+/* Balance / principles */
+.balance-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:18px 0; }
+.balance-item{
+  text-align:center; padding:16px; border-radius:10px; transition:.18s;
+  background: linear-gradient(135deg, rgba(245,158,11,.06), rgba(245,158,11,.09));
+  border:1px solid var(--border-amber);
+}
+.balance-item:hover{ transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,.06); }
+.balance-item:first-child{ background: linear-gradient(135deg, rgba(251,191,36,.1), rgba(253,224,71,.06)); border-color: rgba(251,191,36,.25); }
+.balance-item:last-child { background: linear-gradient(135deg, rgba(99,102,241,.1), rgba(129,140,248,.06)); border-color: rgba(99,102,241,.22); }
+.balance-symbol{ font-size:28px; margin-bottom:8px; display:block; }
+.balance-item strong{ display:block; margin-bottom:8px; font-size: clamp(14px,2vw,16px); color: var(--amber-400); }
+
+/* Principles / love */
+.life-principles, .love-dimensions{ margin:18px 0; }
+.principle, .love-item{
+  display:flex; align-items:center; gap:12px;
+  padding:14px; border-radius:10px; transition:.18s;
+  background: linear-gradient(135deg, rgba(124,58,237,.05), rgba(245,158,11,.07));
+  border:1px solid var(--border-amber);
+  margin-bottom:12px;
+}
+.principle:hover, .love-item:hover{ transform: translateX(3px); background: rgba(124,58,237,.08); }
+.principle-icon, .love-icon{ font-size:20px; flex-shrink:0; }
+.principle strong, .love-item strong{ color: var(--amber-400); }
+
+/* Final */
+.final-content{ text-align:center; }
+.conclusion-title h2{
+  font-family: var(--font-serif);
+  color: var(--violet-300);
+  font-size: clamp(18px, 3vw, 24px);
+  margin-bottom: 22px;
+  text-shadow: 0 0 12px rgba(167,139,250,.45);
+}
+.final-wisdom{ margin: 22px 0; }
+.life-summary{ margin-top: 18px; }
+.summary-item{
+  display:flex; align-items:center; gap:12px;
+  padding:14px; border-radius:10px; transition:.18s;
+  background: linear-gradient(135deg, rgba(124,58,237,.05), rgba(245,158,11,.07));
+  border:1px solid var(--border-amber); text-align:left;
+  margin-bottom:12px;
+}
+.summary-item:hover{ transform: translateX(4px); background: rgba(124,58,237,.08); }
+.summary-icon{ font-size:22px; flex-shrink:0; }
+.summary-item strong{ color: var(--amber-400); }
+
+/* Special notes */
+.nature-wisdom, .growth-note{
+  margin: 16px 0; padding: 14px;
+  background: rgba(245,158,11,.06);
+  border-left: 3px solid var(--amber-400);
+  border-radius: 8px; font-style: italic; color:#6b4b06;
+}
+.duality-concept, .yin-yang-wisdom{
+  margin:16px 0; padding:14px;
+  background: linear-gradient(135deg, rgba(124,58,237,.05), rgba(245,158,11,.05));
+  border-radius:8px; border:1px solid var(--border-amber);
+}
+
+/* Make sure decorative filters won't blur Vietnamese diacritics */
+.cover-title, .cover-quote { filter: none; }
+
+/* Back cover title tweaks */
+.back-title h1{ font-family: var(--font-serif); letter-spacing: 3px; }
+.infinity-symbol{ font-size: 28px; opacity:.9; text-align:center; }
+/* ===== Dark page theme ===== */
+.book-dark .page-content{
+  background: linear-gradient(145deg, #0d1117 0%, #0a0f14 100%);
+  color: #e6edf3;
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 6px 20px rgba(0,0,0,.35) inset, 0 6px 20px rgba(2,6,23,.18);
+}
+.book-dark .page-left,
+.book-dark .page-right{
+  background: linear-gradient(145deg, #0d1117 0%, #0a0f14 100%);
+}
+
+.book-dark .page-number{ color:#94a3b8; }
+.book-dark .wisdom-number{ background:#7c3aed; color:#fff; }
+
+/* box/quote trên nền tối */
+.book-dark .philosophy-quote,
+.book-dark .stoic-quote,
+.book-dark .rumi-quote{
+  background: linear-gradient(135deg, rgba(124,58,237,.12), rgba(245,158,11,.12));
+  color: black;
+  border-left-color:#fbbf24;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+.book-dark .reflection-box,
+.book-dark .meditation-box,
+.book-dark .connection-wisdom,
+.book-dark .wisdom-insight{
+  background: rgba(255,255,255,.04);
+  border-color: rgba(255,255,255,.08);
+  color: black;
+}
+
+/* thẻ tóm tắt/ô điểm nhấn */
+.book-dark .summary-item{
+  background: rgba(255,255,255,.04);
+  border-color: rgba(255,255,255,.08);
+  color:#e6edf3;
+}
+/* ===== THEME: Amber like the screenshot ===== */
+.theme-amber{
+  --accent-50:#fff7ed;
+  --accent-200:#fed7aa;
+  --accent-300:#fdba74;
+  --accent-400:#fb923c;   /* dùng cho nhấn nhẹ */
+  --accent-500:#f59e0b;   /* vàng hổ phách chính */
+  --accent-600:#d97706;
+  --accent-700:#b45309;
+
+  --surface-900:#0b0c10;  /* nền tối */
+  --surface-800:#0f1319;
+}
+
+/* theme-amber: giữ palette cover, nhưng trang nội dung dùng #333 đồng nhất */
+.theme-amber .page-body p{
+  font-family: var(--font-serif);
+  color: var(--text-unified);
+  line-height: 1.75;
+  margin-bottom: 14px;
+  text-align: justify;
+  font-size: clamp(13.5px, 1.95vw, 15.5px);
+  text-indent: 1.25em;
+}
+.theme-amber .page-body h3{ font-family: var(--font-sans); color: var(--text-unified); text-shadow: none; }
+.theme-amber .page-body h4{ font-family: var(--font-sans); color: var(--text-unified); text-shadow: none; }
+.theme-amber .wisdom-number{ background:#e8e0d4; color: var(--text-unified); }
+.theme-amber .philosophy-quote{ border-left-color: #a08040; }
+
+/* ===== Cover (Front) – classic amber style ===== */
+.theme-amber .cover-front.cover--amber{
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--accent-600);
+  color:#f8fafc;
+  background:
+    radial-gradient(70% 60% at 20% 20%, rgba(245,158,11,.12) 0%, transparent 60%),
+    radial-gradient(70% 60% at 80% 80%, rgba(245,158,11,.10) 0%, transparent 60%),
+    linear-gradient(135deg, #0a0d12 0%, #10151d 60%, #0a0d12 100%);
+}
+
+/* lớp hero ở giữa bìa */
+.theme-amber .cover-hero{
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: clamp(8px, 1.5vh, 16px);
+  padding: clamp(16px, 3vh, 28px);
+}
+
+/* “CHƯƠNG 1” */
+.theme-amber .chapter-pill{
+  display:inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  letter-spacing: .2em;
+  font-weight: 800;
+  font-size: clamp(10px, 1.6vw, 12px);
+  color: #fef3c7;
+  background: linear-gradient(180deg, var(--accent-500), var(--accent-600));
+  box-shadow: 0 6px 18px rgba(217,119,6,.35);
+}
+
+/* Heading trắng lớn */
+.theme-amber .cover-heading{
+  margin: 0;
+  font-weight: 900;
+  line-height: .98;
+  letter-spacing: .4px;
+  font-size: clamp(24px, 5.8vw, 40px);
+  color:#ffffff;
+  text-shadow: 0 10px 30px rgba(0,0,0,.55);
+}
+
+/* Sub-title vàng */
+.theme-amber .cover-subtitle{
+  margin-top: 4px;
+  font-size: clamp(12px, 2.2vw, 16px);
+  color: #fde68a;
+  font-weight: 700;
+}
+
+/* Divider  — line • line */
+.theme-amber .cover-divider{
+  display: inline-grid;
+  grid-auto-flow: column;
+  gap: 10px;
+  align-items: center;
+  margin: 2px auto 0;
+}
+.theme-amber .cover-divider span{
+  width: clamp(44px, 6vw, 60px);
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--accent-500), transparent);
+  display: block;
+  border-radius: 2px;
+  filter: drop-shadow(0 0 6px rgba(245,158,11,.5));
+}
+.theme-amber .cover-divider i{
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-500);
+  box-shadow: 0 0 10px rgba(245,158,11,.8);
+}
+
+/* tagline mô tả */
+.theme-amber .cover-tagline{
+  max-width: 88%;
+  margin-inline: auto;
+  color: #e5e7eb;
+  opacity: .9;
+  line-height: 1.7;
+  font-size: clamp(11px, 1.9vw, 14px);
+}
+
+/* trích dẫn */
+.theme-amber .cover-quote-hero{
+  margin: 2px auto 0;
+  padding: 12px 14px;
+  max-width: 80%;
+  color:#fff7ed;
+  font-size: clamp(11px, 1.8vw, 14px);
+  border: 1px solid rgba(245,158,11,.22);
+  border-radius: 10px;
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(6px);
+}
+.theme-amber .cover-quote-hero span{ color: var(--accent-300); font-weight: 700; }
+
+/* Back cover giữ cùng palette (tùy bạn đã có) */
+.theme-amber .cover-back{
+  border: 2px solid var(--accent-600);
+  background:
+    radial-gradient(60% 60% at 30% 30%, rgba(245,158,11,.10) 0%, transparent 60%),
+    radial-gradient(60% 60% at 70% 70%, rgba(245,158,11,.08) 0%, transparent 60%),
+    linear-gradient(135deg, #0a0d12 0%, #10151d 60%, #0a0d12 100%);
+}

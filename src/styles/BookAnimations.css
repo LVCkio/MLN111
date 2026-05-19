@@ -1,0 +1,410 @@
+/* ===================== ANIMATIONS & COVER DESIGNS ===================== */
+/* BookAnimations.css  — optimized for react-pageflip (no custom flip transforms) */
+
+/* --- Stars / subtle glow --- */
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #fbbf24;
+  border-radius: 50%;
+  box-shadow: 0 0 14px #fbbf24;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.star-1 {
+  top: 15%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.star-2 {
+  top: 25%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.star-3 {
+  top: 70%;
+  left: 10%;
+  animation-delay: 2s;
+}
+
+.star-4 {
+  top: 80%;
+  right: 25%;
+  animation-delay: 1.5s;
+}
+
+.star-5 {
+  top: 40%;
+  right: 30%;
+  animation-delay: .5s;
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: .35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.45);
+  }
+}
+
+/* --- Cover Front --- */
+/* --- Cover Front --- */
+.cover-front {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  border: 2px solid #d97706;
+
+  /* 1) hai radial ở TRÊN (overlay) 
+     2) ảnh ở GIỮA (cover) 
+     3) linear gradient ở DƯỚI (nền) */
+  background:
+    radial-gradient(circle at 20% 20%, rgba(124, 58, 237, .15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(245, 158, 11, .12) 0%, transparent 40%),
+    url("../assets/picture/Coverbook.png") center / cover no-repeat,
+    linear-gradient(135deg, #0a0a14 0%, #1a1a2e 50%, #0f0f1a 100%);
+}
+
+.cover-design {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.cover-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cover-ornament {
+  width: 60%;
+  height: 4px;
+  margin: 20px 0;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, .8) 20%, rgba(255, 255, 255, .8) 80%, transparent);
+  box-shadow: 0 0 20px rgba(255, 255, 255, .35);
+  border-radius: 2px;
+}
+
+.cover-ornament.top {
+  animation: float 4s ease-in-out infinite;
+}
+
+.cover-ornament.bottom {
+  animation: float 4s ease-in-out infinite reverse;
+}
+
+.cover-title {
+  position: relative;
+  margin: 40px 0;
+}
+
+.title-backdrop {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(ellipse, rgba(245, 158, 11, .12) 0%, transparent 60%);
+  filter: blur(18px);
+}
+
+.main-title {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+}
+
+.title-line-1,
+.title-line-2 {
+  display: block;
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 800;
+  line-height: .92;
+  letter-spacing: 1px;
+  color: #fbbf24;
+  text-shadow:
+    0 0 28px rgba(245, 158, 11, .8),
+    0 0 60px rgba(245, 158, 11, .35),
+    2px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.title-line-2 {
+  color: #fcd34d;
+  margin-top: 6px;
+}
+
+.subtitle {
+  font-size: clamp(14px, 2.3vw, 18px);
+  color: #fde68a;
+  opacity: .92;
+  margin-top: 14px;
+  font-weight: 500;
+  letter-spacing: .4px;
+}
+
+.cover-quote {
+  position: relative;
+  max-width: 85%;
+  margin: 26px 0;
+  padding: 22px;
+  background: rgba(0, 0, 0, .28);
+  border: 1px solid rgba(245, 158, 11, .22);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+}
+
+.quote-marks {
+  position: absolute;
+  font-size: 60px;
+  color: #fcd34d;
+  opacity: .42;
+  line-height: 1;
+  font-family: serif;
+}
+
+.quote-marks:first-child {
+  top: -10px;
+  left: 10px;
+}
+
+.quote-marks.closing {
+  bottom: -20px;
+  right: 10px;
+  transform: rotate(180deg);
+}
+
+.quote-text {
+  font-style: italic;
+  color: #f9fafb;
+  font-size: clamp(14px, 2.1vw, 16px);
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.quote-author {
+  text-align: right;
+  font-size: clamp(12px, 2vw, 14px);
+  color: #fbbf24;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.cover-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(245, 158, 11, .1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --- Cover Back --- */
+.cover-back {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  border: 2px solid #d97706;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(124, 58, 237, .12) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(245, 158, 11, .08) 0%, transparent 50%),
+    linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0a0a14 100%);
+}
+
+.back-cover-design {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.back-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.back-ornament {
+  width: 50%;
+  height: 3px;
+  margin: 24px 0;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, .6) 20%, rgba(255, 255, 255, .6) 80%, transparent);
+  box-shadow: 0 0 15px rgba(255, 255, 255, .3);
+  border-radius: 2px;
+}
+
+.back-title {
+  position: relative;
+  margin: 28px 0;
+}
+
+.back-title-backdrop {
+  position: absolute;
+  inset: -14px;
+  background: radial-gradient(ellipse, rgba(124, 58, 237, .12) 0%, transparent 60%);
+  filter: blur(14px);
+}
+
+.back-title h1 {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #a78bfa;
+  text-shadow: 0 0 24px rgba(167, 139, 250, .8), 0 0 50px rgba(167, 139, 250, .4);
+}
+
+.infinity-symbol {
+  font-size: clamp(20px, 4vw, 32px);
+  color: #fbbf24;
+  margin-top: 10px;
+  text-shadow: 0 0 18px rgba(245, 158, 11, .6);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1)
+  }
+
+  50% {
+    transform: scale(1.08)
+  }
+}
+
+.back-quote {
+  max-width: 80%;
+  margin: 22px 0;
+  padding: 18px;
+  background: rgba(0, 0, 0, .2);
+  border: 1px solid rgba(124, 58, 237, .22);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+.back-quote-text {
+  font-style: italic;
+  color: #fde68a;
+  font-size: clamp(13px, 2vw, 15px);
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.back-quote-divider {
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #fbbf24, transparent);
+  margin: 14px auto;
+}
+
+.back-message {
+  font-size: clamp(12px, 1.8vw, 14px);
+  color: #fcd34d;
+  opacity: .85;
+  margin-top: 18px;
+  font-weight: 500;
+}
+
+.back-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(124, 58, 237, .08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --- Hover/ambient effects (safe for text rendering) --- */
+.cover-design:hover .title-line-1,
+.cover-design:hover .title-line-2 {
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 28px rgba(245, 158, 11, .85), 0 0 60px rgba(245, 158, 11, .45), 2px 2px 4px rgba(0, 0, 0, .5)
+  }
+
+  50% {
+    text-shadow: 0 0 40px rgba(245, 158, 11, 1), 0 0 80px rgba(245, 158, 11, .6), 2px 2px 4px rgba(0, 0, 0, .5)
+  }
+}
+
+.back-cover-design:hover .back-title h1 {
+  animation: purpleGlow 2s ease-in-out infinite;
+}
+
+@keyframes purpleGlow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 24px rgba(167, 139, 250, .85), 0 0 52px rgba(167, 139, 250, .45)
+  }
+
+  50% {
+    text-shadow: 0 0 36px rgba(167, 139, 250, 1), 0 0 74px rgba(167, 139, 250, .6)
+  }
+}
+
+/* floating & breathing */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0)
+  }
+
+  50% {
+    transform: translateY(-4px)
+  }
+}
+
+.cover-front,
+.cover-back {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1)
+  }
+
+  50% {
+    transform: scale(1.004)
+  }
+}
+
+/* --- IMPORTANT: remove old custom flip to avoid conflicts with react-pageflip --- */
+.book-page,
+.sheet,
+.page-face {
+  display: none !important;
+}
+/* Làm trong suốt phần content trên bìa trước/sau */
+.cover-front .page-content,
+.cover-back  .page-content{
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
+}
