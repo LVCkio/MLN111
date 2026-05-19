@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Bot, ShieldCheck, BookOpen, CheckCircle2, ChevronDown,
@@ -188,12 +189,12 @@ export default function AiAppendix() {
             <b className="text-slate-50/90">rà soát lỗi sai</b> dựa trên dữ liệu chuẩn của dự án.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <a href="/storybook" className="inline-flex items-center gap-2 rounded-xl border border-amber-300/30 bg-gradient-to-b from-amber-300/20 to-amber-300/10 px-4 py-2.5 text-sm font-bold text-slate-50/90 transition hover:-translate-y-0.5">
+            <Link to="/storybook" className="inline-flex items-center gap-2 rounded-xl border border-amber-300/30 bg-gradient-to-b from-amber-300/20 to-amber-300/10 px-4 py-2.5 text-sm font-bold text-slate-50/90 transition hover:-translate-y-0.5">
               <BookOpen size={16} /> Trang Sách
-            </a>
-            <a href="/quiz" className="inline-flex items-center gap-2 rounded-xl border border-slate-300/25 bg-slate-800/55 px-4 py-2.5 text-sm font-bold text-slate-50/80 backdrop-blur-xl transition hover:-translate-y-0.5">
+            </Link>
+            <Link to="/quiz" className="inline-flex items-center gap-2 rounded-xl border border-slate-300/25 bg-slate-800/55 px-4 py-2.5 text-sm font-bold text-slate-50/80 backdrop-blur-xl transition hover:-translate-y-0.5">
               <GraduationCap size={16} /> Trang Ôn tập
-            </a>
+            </Link>
             <a href="#prompt" className="inline-flex items-center gap-2 rounded-xl border border-slate-300/25 bg-slate-800/55 px-4 py-2.5 text-sm font-bold text-slate-50/80 backdrop-blur-xl transition hover:-translate-y-0.5">
               <Wand2 size={16} /> Prompt Library
             </a>
