@@ -7,8 +7,8 @@ import tailwindcss from "@tailwindcss/vite";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default defineConfig({
-  base: "/MLN111/",
+export default defineConfig(({ mode }) => ({
+  base: mode === "production" ? "/MLN111/" : "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -27,4 +27,4 @@ export default defineConfig({
       "@hooks": path.resolve(__dirname, "./src/hooks"),
     },
   },
-});
+}));

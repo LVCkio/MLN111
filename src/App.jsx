@@ -13,6 +13,8 @@ import AiAppendix from "@pages/AiAppendix";
 // import Faqs from "@pages/HomePage/Faqs";
 import endPoint from "@routes/routes";
 
+const BASE = import.meta.env.PROD ? "/MLN111" : "";
+
 const router = createBrowserRouter(
   [
   {
@@ -38,7 +40,7 @@ const router = createBrowserRouter(
     element: <QuizTestPage />,
   },
   ],
-  { basename: "/MLN111" }
+  { basename: BASE }
 );
 
 function App() {
