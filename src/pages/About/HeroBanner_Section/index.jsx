@@ -269,20 +269,6 @@ const HeroSection = () => {
                 — khoa học về những quy luật phổ biến nhất của sự vận động, phát triển
                 của tự nhiên, xã hội và tư duy.
               </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.8 }}
-                className="text-lg text-slate-400 leading-relaxed"
-              >
-                Hệ thống gồm{" "}
-                <span className="text-amber-400 font-medium">
-                  2 nguyên lý cơ bản, 6 cặp phạm trù và 3 quy luật cốt lõi
-                </span>{" "}
-                giúp nhận thức đúng đắn quy luật vận động, phát triển của mọi sự
-                vật, hiện tượng trong thế giới khách quan.
-              </motion.p>
             </div>
 
             {/* Features */}
