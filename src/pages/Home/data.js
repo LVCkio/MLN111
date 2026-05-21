@@ -1,11 +1,7 @@
-import Home2 from "../../assets/picture/intro.png";
-import sophie0 from "../../assets/picture/ph1.png";
-import sophie1 from "../../assets/picture/ph2.png";
-import sophie2 from "../../assets/picture/ph3.png";
-import sophie3 from "../../assets/picture/ph4.png";
-import sophie4 from "../../assets/picture/ph5.png";
-import sophie5 from "../../assets/picture/ph6.png";
-import sophie6 from "../../assets/picture/ph7.png";
+// ─── Ảnh nền mới từ public/images/ ───────────────────────────────────────────
+// Dùng import.meta.env.BASE_URL để tự động xử lý base path (/MLN111/ trên GH Pages)
+const BASE = import.meta.env.BASE_URL;
+const bgImg = (name) => `${BASE}images/${name}`;
 
 // ─────────────────────────────────────────────────────────────────
 //  CÂU CHUYỆN: "Nam và Lựa chọn trước Bình minh Số"
@@ -22,7 +18,7 @@ const sections = [
     quote:
       "Thay vì tiếp tục chìm đắm trong nỗi lo âu, hãy dùng triết học như công cụ để nhìn thấy rõ ràng hướng đi phía trước.",
     author: "Mở Đầu: Câu chuyện của Nam",
-    backgroundImage: Home2,
+    backgroundImage: bgImg("bg-slide1.png"),
     hint: "Nhấn Space / PageDown để bắt đầu Phần 1.",
   },
 
@@ -35,7 +31,7 @@ const sections = [
     quote:
       "Giáo sư giúp anh phân tích tình huống của mình thông qua ba cặp phạm trù triết học nền tảng, qua đó nhìn thấy rõ ràng hướng đi phía trước.",
     author: "Bối cảnh câu chuyện",
-    backgroundImage: sophie0,
+    backgroundImage: bgImg("bg-slide2.png"),
     hint: "Kéo xuống để vào Phần 1: Nguyên Nhân và Kết Quả.",
   },
 
@@ -48,7 +44,7 @@ const sections = [
     quote:
       "Mọi hiện tượng trong tự nhiên và xã hội đều có nguyên nhân — không có kết quả nào là ngẫu nhiên hoàn toàn.",
     author: "Phần 1 · Khái niệm & Phân tích nguyên nhân",
-    backgroundImage: sophie1,
+    backgroundImage: bgImg("bg-slide4.png"),
     hint: "Kéo xuống để xem biện chứng đảo ngược.",
   },
 
@@ -61,7 +57,7 @@ const sections = [
     quote:
       "Thay vì sợ hãi kết quả (mất việc), hãy chủ động tác động vào nguyên nhân (năng lực bản thân) — đầu tư vào đầu vào mới để tạo ra kết quả khác.",
     author: "Bài học của Nam — Phần 1",
-    backgroundImage: sophie2,
+    backgroundImage: bgImg("bg-slide5.png"),
     hint: "Kéo xuống để vào Phần 2: Bản Chất và Hiện Tượng.",
   },
 
@@ -74,7 +70,7 @@ const sections = [
     quote:
       "Thành công không đến với người nhìn hiện tượng, mà đến với người hiểu bản chất.",
     author: "Phần 2 · Khái niệm & Bản chất AI",
-    backgroundImage: sophie3,
+    backgroundImage: bgImg("bg-slide6.png"),
     hint: "Kéo xuống để xem ví dụ cụ thể.",
   },
 
@@ -87,7 +83,7 @@ const sections = [
     quote:
       "Nếu chỉ nhìn vào hiện tượng bên ngoài, anh sẽ thấy bế tắc. Nhưng nếu đi sâu vào bản chất, anh sẽ thấy cả một bản đồ cơ hội.",
     author: "Bài học của Nam — Phần 2",
-    backgroundImage: sophie4,
+    backgroundImage: bgImg("bg-slide7.png"),
     hint: "Kéo xuống để vào Phần 3: Khả Năng và Hiện Thực.",
   },
 
@@ -100,7 +96,7 @@ const sections = [
     quote:
       "Khả năng không tự nhiên thành hiện thực — nó cần điều kiện tương ứng và hoạt động thực tiễn chủ động của con người.",
     author: "Phần 3 · Khái niệm & Khả năng tiến bộ",
-    backgroundImage: sophie5,
+    backgroundImage: bgImg("bg-slide8.png"),
     hint: "Kéo xuống để xem điều kiện hiện thực hóa.",
   },
 
@@ -113,7 +109,7 @@ const sections = [
     quote:
       "Cuộc cách mạng AI là hiện thực khách quan cả thế hệ đang đối mặt. Bản đồ của tương lai nằm trong những lựa chọn hôm nay — anh biết mình sẽ làm gì với nỗi lo lắng đó.",
     author: "Kết Luận — Câu chuyện của Nam",
-    backgroundImage: sophie6,
+    backgroundImage: bgImg("bg-slide9.png"),
     hint: "Kết thúc — quay lại Trang bìa hoặc tiếp tục khám phá.",
   },
 ];
