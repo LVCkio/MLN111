@@ -400,7 +400,7 @@ export default function Header() {
         <div className="mx-auto pr-6 pl-8 py-1.5 flex items-center justify-between">
           {/* Sophisticated Logo */}
           <div className="group cursor-pointer">
-            <a href="/">
+            <RouterNavLink to="/">
               <h2
                 className="text-amber-200/95 font-serif text-3xl font-bold tracking-wide 
       group-hover:text-amber-100 transition-all duration-300 hover:scale-105
@@ -408,7 +408,7 @@ export default function Header() {
               >
                 CHỦ NGHĨA DUY VẬT BIỆN CHỨNG
               </h2>
-            </a>
+            </RouterNavLink>
           </div>
 
           {/* Refined Desktop Navigation */}
