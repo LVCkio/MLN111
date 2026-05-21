@@ -95,35 +95,34 @@ const RotatingPhrase = ({ phrases, intervalMs = 5000, className = "" }) => {
   );
 };
 
+const KEY_YEARS = [2, 6, 3, 1848, 1867, 1894];
+const KEY_LABELS = [
+  "2 nguyên lý cơ bản",
+  "6 cặp phạm trù cơ bản",
+  "3 quy luật cơ bản",
+  "Năm 1848 — Tuyên ngôn Đảng Cộng sản",
+  "Năm 1867 — Bộ Tư bản ra đời",
+  "Năm 1894 — Ăngghen hoàn thiện phép biện chứng",
+];
+
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
-
-  // ===== key stats loop =====
-  const KEY_YEARS = [2, 6, 3, 1848, 1867, 1894];
-  const KEY_LABELS = [
-    "2 nguyên lý cơ bản",
-    "6 cặp phạm trù cơ bản",
-    "3 quy luật cơ bản",
-    "Năm 1848 — Tuyên ngôn Đảng Cộng sản",
-    "Năm 1867 — Bộ Tư bản ra đời",
-    "Năm 1894 — Ăngghen hoàn thiện phép biện chứng",
-  ];
-
-  const [_yearIndex, setYearIndex] = useState(0);
+  const [yearIndex, setYearIndex] = useState(0);
   const [year, setYear] = useState(KEY_YEARS[0]);
   const [prevYear, setPrevYear] = useState(KEY_YEARS[0]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
-      setYearIndex((idx) => {
-        const nextIdx = (idx + 1) % KEY_YEARS.length;
-        setPrevYear(KEY_YEARS[idx]);
-        setYear(KEY_YEARS[nextIdx]);
-        return nextIdx;
-      });
+      setYearIndex((idx) => (idx + 1) % KEY_YEARS.length);
     }, 2000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const prevIdx = (yearIndex - 1 + KEY_YEARS.length) % KEY_YEARS.length;
+    setPrevYear(KEY_YEARS[prevIdx]);
+    setYear(KEY_YEARS[yearIndex]);
+  }, [yearIndex]);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
