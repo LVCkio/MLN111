@@ -6,35 +6,35 @@ import {
   Eye,
   Target,
 } from "lucide-react";
-import homeImage from "../../../assets/picture/Home.png";
-import introImage from "../../../assets/picture/intro.png";
-import coverImage from "../../../assets/picture/Coverbook.png";
-import sectionOneImage from "../../../assets/picture/ph1.png";
-import sectionTwoImage from "../../../assets/picture/ph2.png";
+
+// ─── Ảnh nền mới từ public/images/ ───────────────────────────────────────────
+// Dùng import.meta.env.BASE_URL để tự động xử lý base path (/MLN111/ trên GH Pages)
+const BASE = import.meta.env.BASE_URL;
+const bgImg = (name) => `${BASE}images/${name}`;
 
 export const introSlides = [
   {
-    image: coverImage,
+    image: bgImg("bg-slide1.png"),
     title: "Linh hồn sống của chủ nghĩa Mác",
     text: "Phép biện chứng duy vật là khoa học về những quy luật phổ biến nhất của sự vận động, phát triển của tự nhiên, xã hội và tư duy — hạt nhân phương pháp luận của triết học Mác–Lênin.",
   },
   {
-    image: introImage,
+    image: bgImg("bg-slide2.png"),
     title: "Hai nguyên lý cơ bản",
     text: "Nguyên lý về mối liên hệ phổ biến và nguyên lý về sự phát triển là hai nền tảng xuất phát điểm, định hướng cách nhìn toàn diện và phát triển đối với mọi sự vật, hiện tượng.",
   },
   {
-    image: sectionOneImage,
+    image: bgImg("bg-slide4.png"),
     title: "Sáu cặp phạm trù cơ bản",
     text: "Cái riêng – Cái chung, Nguyên nhân – Kết quả, Tất nhiên – Ngẫu nhiên, Nội dung – Hình thức, Bản chất – Hiện tượng, Khả năng – Hiện thực: sáu cặp phản ánh các mối liên hệ phổ biến nhất của thế giới.",
   },
   {
-    image: sectionTwoImage,
+    image: bgImg("bg-slide6.png"),
     title: "Ba quy luật cơ bản",
     text: "Quy luật lượng–chất, Quy luật thống nhất và đấu tranh của các mặt đối lập, Quy luật phủ định của phủ định — hạt nhân của phép biện chứng, vạch ra nguồn gốc, cách thức và xu hướng phát triển.",
   },
   {
-    image: homeImage,
+    image: bgImg("bg-slide9.png"),
     title: "Ý nghĩa phương pháp luận",
     text: "Phép biện chứng duy vật trang bị công cụ tư duy khoa học: nhìn nhận sự vật toàn diện, phát triển, tích lũy đủ lượng trước khi tạo bước nhảy chất, phân tích và giải quyết mâu thuẫn đúng đắn.",
   },
