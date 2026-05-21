@@ -70,7 +70,7 @@ const sections = [
     title: "Phần 2: Bản Chất và Hiện Tượng",
     subtitle: "Đi từ hiện tượng → bản chất → bản chất sâu hơn",
     description:
-      "Hiện tượng là những biểu hiện bên ngoài, có thể quan sát trực tiếp. Bản chất là cái nằm bên trong, bền vững hơn, quyết định sự tồn tại và phát triển của sự vật. Hiện tượng biểu hiện bản chất — nhưng chỉ một phần, không toàn bộ — và có thể xuyên tạc bản chất.\n\nBản chất thực của cuộc cách mạng AI: ① Sự chuyển đổi phương thức sản xuất (nông nghiệp → công nghiệp → tri thức số). ② AI chỉ thay thế tư duy lặp lại — tư duy sáng tạo, cảm xúc, kết nối con người là đặc quyền của con người. ③ Thị trường cần người biết dùng AI — người biết dùng AI đang cạnh tranh với người không biết.",
+      "Hiện tượng là biểu hiện bên ngoài; bản chất là cái bên trong, bền vững, quyết định sự tồn tại của sự vật. Hiện tượng biểu hiện bản chất — nhưng chỉ một phần — và có thể xuyên tạc bản chất.\n\nMỗi ngày Nam đối mặt với bốn hiện tượng gây lo lắng: ① Bạn bè trong lớp dùng AI viết tiểu luận, thiết kế hình ảnh chuyên nghiệp chỉ trong vài giây. ② Tiêu đề báo chí \"AI thay thế hàng triệu việc làm\" liên tục xuất hiện. ③ Tiêu đề \"Châu Á mất 100 triệu việc làm trong 10 năm tới\" khiến anh mất ngủ. ④ Công ty lớn trong ngành truyền thông sa thải hàng loạt nhân viên biên tập.\n\nBản chất thực của cuộc cách mạng AI: ① Sự chuyển đổi phương thức sản xuất (nông nghiệp → công nghiệp → tri thức số). ② AI chỉ thay thế tư duy lặp lại — tư duy sáng tạo, cảm xúc, kết nối con người là đặc quyền của con người. ③ Thị trường cần người biết dùng AI — người biết dùng AI đang cạnh tranh với người không biết.",
     quote:
       "Thành công không đến với người nhìn hiện tượng, mà đến với người hiểu bản chất.",
     author: "Phần 2 · Khái niệm & Bản chất AI",
@@ -96,7 +96,7 @@ const sections = [
     title: "Phần 3: Khả Năng và Hiện Thực",
     subtitle: "Khả năng không tự động biến thành hiện thực",
     description:
-      "Hiện thực là cái đang tồn tại, cái đã trở thành. Khả năng là cái chưa trở thành hiện thực, nhưng đã có mầm mống ngay trong lòng hiện thực đó. Phép biện chứng phân biệt: khả năng thực (gần — đã có điều kiện chín muồi) và khả năng hình thức (xa — chưa có điều kiện hiện thực hóa).\n\nKhả năng tiến bộ đang chờ Nam: ① Chuyên gia truyền thông tích hợp AI. ② Nhà quản lý con người trong môi trường AI hóa — định hướng đạo đức, quản trị đội nhóm, tạo văn hóa tổ chức. ③ Nhà tư vấn & đào tạo kỹ năng AI. ④ Nhà sáng tạo nội dung có góc nhìn độc đáo — giọng nói có cảm xúc thật ngày càng được trân trọng.",
+      "Hiện thực là cái đang tồn tại. Khả năng là cái chưa trở thành hiện thực nhưng đã có mầm mống ngay trong lòng hiện thực đó.\n\nHiện thực của Nam hôm nay: nền tảng kiến thức truyền thông 4 năm là lợi thế thực sự; đang chứng kiến AI bùng nổ sớm — cơ hội tiếp cận trước người khác; \"khoảng trắng\" kinh nghiệm là dịp định hình lại bản thân theo hướng mới; có sự hỗ trợ từ nhà trường và giáo sư.\n\nKhả năng tiêu cực cần nhận ra để tránh: bị tê liệt bởi lo âu → \"analysis paralysis\", không hành động; lạm dụng AI thụ động → tốt nghiệp thiếu năng lực thật; chọn sai hướng do chỉ nhìn hiện tượng → đầu tư nhầm vào kỹ năng sớm lỗi thời.\n\nKhả năng tiến bộ cần nắm bắt: ① Chuyên gia truyền thông tích hợp AI. ② Nhà quản lý con người trong môi trường AI hóa — định hướng đạo đức, quản trị đội nhóm. ③ Nhà tư vấn & đào tạo kỹ năng AI. ④ Nhà sáng tạo nội dung có góc nhìn độc đáo — giọng nói cảm xúc thật ngày càng được trân trọng.",
     quote:
       "Khả năng không tự nhiên thành hiện thực — nó cần điều kiện tương ứng và hoạt động thực tiễn chủ động của con người.",
     author: "Phần 3 · Khái niệm & Khả năng tiến bộ",
@@ -107,11 +107,11 @@ const sections = [
   // ── SLIDE 7 · Phần 3b & Kết luận ─────────────────────────────
   {
     title: "Điều Kiện Hiện Thực Hóa & Kết Luận",
-    subtitle: "Ba bài học triết học — Kế hoạch hành động cụ thể",
+    subtitle: "Ba điều kiện · Ba bài học · Kế hoạch hành động",
     description:
-      "Ba điều kiện để khả năng trở thành hiện thực: ① Điều kiện khách quan — thị trường lao động đang có nhu cầu cao về nhân sự AI trong truyền thông, marketing, quản trị. ② Điều kiện chủ quan — Nam phải chủ động học hỏi, thực hành prompt engineering, chiến lược nội dung, phân tích dữ liệu. ③ Điều kiện thực tiễn — cần kế hoạch và hành động cụ thể.\n\nBa bài học triết học nằm lòng: Tư duy toàn diện — nhìn AI như hệ thống phức tạp cần điều hướng. Tư duy phát triển — đặt mình vào dòng vận động, đón đầu thay vì bị đánh đòn. Kế thừa biện chứng — giữ lại giá trị nền tảng, loại bỏ kỹ năng lỗi thời.",
+      "Ba điều kiện để khả năng trở thành hiện thực: ① Khách quan — thị trường đang cần nhân sự AI trong truyền thông, marketing, quản trị. ② Chủ quan — Nam phải chủ động thực hành prompt engineering, chiến lược nội dung, phân tích dữ liệu. ③ Thực tiễn — cần kế hoạch và hành động cụ thể, không chờ cơ hội.\n\nBa bài học triết học nằm lòng: Tư duy toàn diện — nhìn AI như hệ thống phức tạp cần điều hướng. Tư duy phát triển — đặt mình vào dòng vận động, đón đầu thay vì bị đánh đòn. Kế thừa biện chứng — giữ lại giá trị nền tảng, loại bỏ kỹ năng lỗi thời.\n\nKế hoạch hành động cụ thể: ① Tích lũy \"Lượng\" để tạo \"Chất\" — học và thực hành đều đặn mỗi ngày cho đến điểm nút bước nhảy về chất. ② Giải quyết \"Mâu thuẫn\" nội tại — nhận diện khoảng cách giữa trình độ hiện tại và yêu cầu xã hội số, dùng nỗ lực học tập để thu hẹp nó. ③ Tập trung vào \"Khả năng thực\" — đầu tư vào tư duy sáng tạo có cảm xúc, đạo đức nghề nghiệp và kỹ năng lãnh đạo con người như tài sản lâu dài.",
     quote:
-      "Cuộc cách mạng AI là hiện thực khách quan cả thế hệ đang đối mặt. Bản đồ của tương lai nằm trong những lựa chọn hôm nay. Anh biết mình sẽ làm gì với nỗi lo lắng đó.",
+      "Cuộc cách mạng AI là hiện thực khách quan cả thế hệ đang đối mặt. Bản đồ của tương lai nằm trong những lựa chọn hôm nay — anh biết mình sẽ làm gì với nỗi lo lắng đó.",
     author: "Kết Luận — Câu chuyện của Nam",
     backgroundImage: sophie6,
     hint: "Kết thúc — quay lại Trang bìa hoặc tiếp tục khám phá.",
